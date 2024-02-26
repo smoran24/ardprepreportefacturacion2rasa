@@ -1,0 +1,186 @@
+<mvc:View controllerName="AR_DP_REP_FACTURACIONREPORTE_RASA.AR_DP_REP_FACTURACIONREPORTE_RASA.controller.detalle" xmlns="sap.uxap" xmlns:m="sap.m"
+	xmlns:f="sap.f" xmlns:form="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core">
+	<ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="false"
+		headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="Detalle Factura" wrapping="true" class="sapUiSmallMarginEnd"/>
+				</expandedHeading>
+				<snappedHeading>
+					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+						<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+							<core:Icon src="sap-icon://sales-order-item"/>
+							<m:HBox width="10px"/>
+							<m:Title text="{Detalle>Descmat}" wrapping="true"/>
+						</m:FlexBox>
+					</m:FlexBox>
+				</snappedHeading>
+				<navigationActions>
+					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press="atras" tooltip="Cerrar Detalle"
+						visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
+				</navigationActions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+		<headerContent>
+			<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+				<core:Icon src="sap-icon://sales-order-item"/>
+				<m:HBox width="30px"/>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="" design="Bold"/>
+					<m:Text text=" " id="Facturatitulo"/>
+				</m:VBox>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="" design="Bold"/>
+					<m:Text text="" id="precio"/>
+				</m:VBox>
+			</m:FlexBox>
+		</headerContent>
+		<sections>
+			<ObjectPageSection title="Informacion General">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<form:SimpleForm maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" labelSpanL="12" labelSpanM="12" emptySpanL="0"
+								emptySpanM="0" columnsL="1" columnsM="1">
+								<form:content >
+									<m:HBox>
+										<m:VBox>
+											<m:Label text=" Factura" design="Bold"/>
+											<m:Text text="" id="Nfactura"/>
+											<m:VBox height="10px"/>
+											<m:Label text="Factura legal" design="Bold"/>
+											<m:Text text="" id="Faclegal"/>
+										</m:VBox>
+										<m:HBox width="30%"></m:HBox>
+										<m:VBox>
+											<m:Label text=" Tipo Factura" design="Bold"/>
+											<m:Text text="" id="descFactura"/>
+											<m:VBox height="10px"/>
+											<m:Label text="Total Factura" design="Bold"/>
+											<m:Text text="" id="totalFactura"/>
+										</m:VBox>
+										<m:HBox width="30%"></m:HBox>
+										<m:VBox>
+											<m:Label text="Fecha factura" design="Bold"/>
+											<m:Text text="" id="Fecrem"/>
+											<m:VBox height="10px"/>
+											<m:Label text="Direccion " design="Bold"/>
+											<m:Text text="" id="Dirent"/>
+										</m:VBox>
+									</m:HBox>
+								</form:content>
+							</form:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="Detalles">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<m:Table id="suppliersTable" items="{Facturacion>/}">
+								<m:columns>
+									<m:Column hAlign="Left" width="auto">
+										<m:Text text="Material"/>
+									</m:Column>
+									<m:Column hAlign="Left" width="auto">
+										<m:Text text="Remito"/>
+									</m:Column>
+									<m:Column hAlign="Left" width="auto">
+										<m:Text text="Fecha Remito"/>
+									</m:Column>
+									<m:Column hAlign="Left" width="auto">
+										<m:Text text="Precio Unitario"/>
+									</m:Column>
+									<m:Column hAlign="Left" width="auto">
+										<m:Text text="Precio"/>
+									</m:Column>
+									<m:Column hAlign="Left" width="auto">
+										<m:Text text="Descuento"/>
+									</m:Column>
+									<m:Column hAlign="Left" width="auto">
+										<m:Text text="Recargo"/>
+									</m:Column>
+									<m:Column hAlign="Left" width="auto">
+										<m:Text text="% iva"/>
+									</m:Column>
+									<m:Column hAlign="Left" width="auto">
+										<m:Text text="iva"/>
+									</m:Column>
+									<m:Column hAlign="Left" width="auto">
+										<m:Text text="IIBB"/>
+									</m:Column>
+										<m:Column hAlign="Left" width="auto">
+										<m:Text text="Total Impuesto"/>
+									</m:Column>
+									<m:Column hAlign="Left" width="auto">
+										<m:Text text="Familia"/>
+									</m:Column>
+								
+									<m:Column hAlign="Left" width="auto">
+										<m:Text text="Modelo"/>
+									</m:Column>
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem type="Inactive">
+										<m:cells>
+											<m:Text text="{path: 'Facturacion>Descmat'}"/>
+											<m:Text text="{path: 'Facturacion>Nroremito'}"/>
+											<m:Text text="{path: 'Facturacion>Fecrem'}"/>
+											<m:Text text="{path: 'Facturacion>PrecioUnitario'}"/>
+											<m:Text text="{path: 'Facturacion>Precioconc'} "/>
+											<m:Text text="{path: 'Facturacion>Doclista'}"/>
+											<m:Text text="{path: 'Facturacion>Margenconc'}"/>
+											<m:Text text="{path: 'Facturacion>Porciva'}%"/>
+											<m:Text text="{path: 'Facturacion>Impiva'}"/>
+											<m:Text text="{path: 'Facturacion>Percep'} "/>
+											<m:Text text="{path: 'Facturacion>TotalImpuesto'}"/>
+											<m:Text text="{path: 'Facturacion>Familiamat'}"/>
+											<m:Text text="{path: 'Facturacion>Modelo'}"/>
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="PDF FACTURA">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<!--<m:p               -->
+							<m:PDFViewer id="vistaPDF" title="FACTURA" height="800px" showDownloadButton="false">
+								<m:layoutData>
+									<m:FlexItemData growFactor="1"/>
+								</m:layoutData>
+							</m:PDFViewer>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+				<ObjectPageSection title="PDF REMITO">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<!--<m:p               -->
+							<m:PDFViewer id="vistaPDF2" title="" height="800px" showDownloadButton="false">
+								<m:layoutData>
+									<m:FlexItemData growFactor="1"/>
+								</m:layoutData>
+							</m:PDFViewer>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+		<footer>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer/>
+				<m:Button type="Accept" text="Save"/>
+				<m:Button type="Reject" text="Cancel"/>
+			</m:OverflowToolbar>
+		</footer>
+	</ObjectPageLayout>
+</mvc:View>

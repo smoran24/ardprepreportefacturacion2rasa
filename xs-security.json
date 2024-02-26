@@ -1,0 +1,7 @@
+{
+  "xsappname": "ardprepreportefacturacion2rasa",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "scopes": [],
+  "role-templates": []
+}

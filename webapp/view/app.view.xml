@@ -1,0 +1,12 @@
+<mvc:View controllerName="AR_DP_REP_FACTURACIONREPORTE_RASA.AR_DP_REP_FACTURACIONREPORTE_RASA.controller.app" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content></content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

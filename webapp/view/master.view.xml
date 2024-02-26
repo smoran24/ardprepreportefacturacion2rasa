@@ -1,0 +1,182 @@
+<mvc:View controllerName="AR_DP_REP_FACTURACIONREPORTE_RASA.AR_DP_REP_FACTURACIONREPORTE_RASA.controller.master" 
+xmlns:core="sap.ui.core"
+	xmlns:t="sap.ui.table" 
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<Panel>
+							<HBox>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="22%" justifyContent="Start" visible="true" displayInline="false"
+									id="dealer1">
+									<items>
+										<Text text="Dealer" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<ComboBox xmlns="sap.m" id="dealer" placeholder="Solicitante" width="100%" items="{path: 'cliente>/'}" loadItems="ConsultaDestinatario"
+											change="ConsultaDestinatario">
+											<items>
+												<core:Item xmlns:core="sap.ui.core" key="{cliente>SOLICITANTE}" text="{cliente>NOMBRE_SOLICITANTE}"/>
+											</items>
+										</ComboBox>
+									</items>
+								</VBox>
+								<HBox width="3%"/>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="22%" justifyContent="Start" visible="true" displayInline="false">
+									<items>
+										<Text text="Fecha Desde - Hasta" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<DateRangeSelection id="Fecha" change="fechas"/>
+									</items>
+								</VBox>
+								<HBox width="3%"/>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="22%" justifyContent="Start" visible="true" displayInline="false">
+									<items>
+										<Text text="Tipo de Pedido" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<ComboBox xmlns="sap.m" id="cmbPedido" placeholder="Tipo de Pedido" width="100%" items="{path: 'Tpedido>/'}" loadItems="ConsultaOdata3"
+											change="Tipo Pedido">
+											<items>
+												<core:Item xmlns:core="sap.ui.core" key="{Tpedido>AUART}" text="{Tpedido>BEZEI}"/>
+											</items>
+										</ComboBox>
+									</items>
+								</VBox>
+								<HBox width="3%"/>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="22%" justifyContent="Start" visible="true" displayInline="false">
+									<items>
+										<Text text="Destinatario" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<ComboBox xmlns="sap.m" id="Destinatario" placeholder="Destinatario" width="100%" items="{path: 'Destinatarios>/'}">
+											<items>
+												<core:Item xmlns:core="sap.ui.core" key="{Destinatarios>DESTINATARIO}" text="{Destinatarios>DIRECCION}"/>
+											</items>
+										</ComboBox>
+									</items>
+								</VBox>
+							</HBox>
+							<VBox height="10px"/>
+							<HBox>
+								<!--<HBox width="3%"/>-->
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="22%" justifyContent="Start" visible="true" displayInline="false">
+									<items>
+										<Text text="Material" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<Input width="100%" placeholder="" id="Material"/>
+									</items>
+								</VBox>
+								<HBox width="3%"/>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="22%" justifyContent="Start" visible="true" displayInline="false">
+									<items>
+										<Text text="Factura" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<Input width="100%" placeholder="" id="Factura"/>
+									</items>
+								</VBox>
+								<HBox width="3%"/>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="22%" justifyContent="Start" visible="true" displayInline="false">
+									<items>
+										<Text text="Remito" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<Input width="100%" placeholder="" id="Remito"/>
+									</items>
+								</VBox>
+								<HBox width="3%"/>
+								<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="10%" justifyContent="Start" visible="true" displayInline="false">
+									<items>
+										<Text text=" " width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										<Button text="Buscar" press="ConsultaFacturas"/>
+									</items>
+								</VBox>
+								<HBox width="3%"/>
+							</HBox>
+						</Panel>
+						<Panel>
+							<HBox justifyContent="End">
+								<Button type="Transparent" text=" Enviar" icon="sap-icon://email" press="EnvioCorreo"/>
+								<Button type="Transparent" text=" Descargar" icon="sap-icon://excel-attachment" press="downloadExcel"/>
+							</HBox>
+							<t:Table visibleRowCount="15" selectionMode="None" rows="{Facturacion>/}" id="tInicio">
+								<t:columns>
+									<t:Column sortProperty="Pedidodealer">
+										<Text text="Pedido SAP" maxLines="2"/>
+										<t:template>
+											<Text text="{path: 'Facturacion>Pedidosap' }" wrapping="true"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="auto" sortProperty="descPedido">
+										<Text text="Tipo Pedido" maxLines="2"/>
+										<t:template>
+											<Text text="{path: 'Facturacion>descPedido' }" wrapping="true"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="Nrofactura">
+										<Text text="Factura" maxLines="2"/>
+										<t:template>
+											<Link text="{path: 'Facturacion>Nrofactura' }" press=".onListItemPress" wrapping="true"/>
+										</t:template>
+									</t:Column>
+										<t:Column sortProperty="Nroremito">
+										<Text text="Remito" maxLines="2"/>
+										<t:template>
+											<Text text="{path: 'Facturacion>Nroremito' }"  wrapping="true"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="auto" sortProperty="Material">
+										<Text text=" Material" maxLines="2"/>
+										<t:template>
+											<Text text="{path: 'Facturacion>Material' }" wrapping="true"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="15%" sortProperty="Descmat">
+										<Text text="Descripción" maxLines="2"/>
+										<t:template>
+											<Text text="{path: 'Facturacion>Descmat' }" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="auto" sortProperty="Cantfact">
+										<Text text="Cantidad" maxLines="2"/>
+										<t:template>
+											<Text text="{path: 'Facturacion>Cantfact' }" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="auto" sortProperty="Precioconc">
+										<Text text="Precio Concesionario" maxLines="2"/>
+										<t:template>
+											<Text text="{path: 'Facturacion>Precioconc'} {path: 'Facturacion>Moneda'}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="auto" sortProperty="Total">
+										<Text text="Total con Impuesto" maxLines="2"/>
+										<t:template>
+											<Text text="{path: 'Facturacion>Total'} {path: 'Facturacion>Moneda'}" wrapping="false"/>
+										</t:template>
+									</t:Column>
+										<t:Column width="auto"  id= "dealertxt" >
+										<Text text="Dealer" maxLines="2" id= "dealertxt2"/>
+										<t:template>
+											<Text text="{path: 'Facturacion>Dealer'}" wrapping="false" id= "dealertxt3"/>
+										</t:template>
+									</t:Column>
+									
+								</t:columns>
+							</t:Table>
+				
+						</Panel>
+					</content>
+					<customHeader>
+						<Bar class="sapContrastPlus" design="Header" visible="false">
+							<contentLeft>
+								<VBox width="15px"/>
+								<Text text="Reporte Facturacion" class="tituloHead"/>
+								<!--Image height="28px" id="lNissan"/-->
+							</contentLeft>
+						</Bar>
+					</customHeader>
+					<footer>
+						<Bar class="sapContrast sapContrastPlus">
+							<contentRight>
+								<Button text="Salir" type="Reject" icon="sap-icon://log" press="onSalir"/>
+							</contentRight>
+						</Bar>
+					</footer>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
